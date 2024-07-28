@@ -1,14 +1,22 @@
-﻿namespace Biblioteca;
+﻿using System;
+using System.Runtime.InteropServices.Marshalling;
+
+namespace Biblioteca;
 
 class Program
 {
-	static void Main(string[] args)
+	public static void Main(string[] args)
 	{
 		Biblioteca biblioteca= new Biblioteca();
+
+	
 		
-		// adicionar cliente
-		biblioteca.clientes.Add(new Cliente{Id = 1, Nome = "Jorge e Mateus", 
-		DataNascimento = new DateTime(1980, 01, 01), Telefone = "62999999"});
+		
+		
+		
+		
+	
+		
 		
 		// adicionar livro
 		biblioteca.livros.Add(new Livro{Id = 1, Titulo ="Dom Casmurro", 
@@ -23,5 +31,47 @@ class Program
 		{
 			biblioteca.EmprestarLivro(2,2);
 		}*/
+	
+	      int op = 1;
+	while(op!=0)
+		{
+		
+		Console.WriteLine("Selecione uma opção: ");
+
+		Console.WriteLine("1 Para abrir aba Clientes.");
+
+		Console.WriteLine("2 Para abrir menu de Funcionários.");
+		op= int.Parse(Console.ReadLine());
+
+		if(op==0){
+			break;
+		}
+		
+		else if(op==1){
+			
+			//Console.Clear();
+			
+			Console.WriteLine("1 - Listar um Cliente: ");
+			Console.WriteLine("2 - Cadastrar um Cliente: ");
+			int alternativa = Int32.Parse(Console.ReadLine());
+
+			if(alternativa==1){
+			Cliente.ListarClientes(biblioteca.clientes);
+			}
+			else if(alternativa==2){
+				//Cliente.CadastrarCliente();
+
+			}
+			}
+		else if(op==2){
+			//Console.Clear();
+			Console.WriteLine("2 - Listar Funcionarios: ");
+			Console.ReadKey();
+		}	
+		}
+
+		
+
 	}
 }
+

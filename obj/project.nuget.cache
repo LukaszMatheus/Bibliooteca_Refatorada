@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "92kCyIaDpY9i/pb0Gw1i8FzmIIacSuBZrkdZpDmuFgUlvtnThoWlTu7DeRskgoRrL+bUKFjbf4PVILKILwKOpw==",
+  "dgSpecHash": "5oCP7glLZU8=",
   "success": true,
-  "projectFilePath": "/home/aluno/Documentos/TADS/Biblioteca/Biblioteca.csproj",
+  "projectFilePath": "C:\\Users\\Teste\\Documents\\GitHub\\Bibliooteca_Refatorada\\Biblioteca.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
