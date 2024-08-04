@@ -8,13 +8,13 @@ namespace Biblioteca;
 
 public class Cliente : Pessoa
 {
-	public int Id { get; set; }
+	public int IdCliente { get; set; }
 	public string Telefone { get; set; }
 
 	public static List<Cliente> clientes = new List<Cliente>//Lista de clientes e clientes adicionados manualmente
 	{
-		new Cliente {Id = 1, Nome="Lucas",DataNascimento=new DateTime(2004, 06, 01), Telefone="42988776655"},
-		new Cliente {Id = 2, Nome="Jaqueline",DataNascimento=new DateTime(2003, 11, 20), Telefone="4233112233" }
+		new Cliente {IdCliente = 1, Nome="Lucas",DataNascimento=new DateTime(2004, 06, 01), Telefone="42988776655"},
+		new Cliente {IdCliente = 2, Nome="Jaqueline",DataNascimento=new DateTime(2003, 11, 20), Telefone="4233112233" }
 	};
 
 	public static void ListarClientes()
@@ -37,11 +37,11 @@ public class Cliente : Pessoa
 
 	public static void CadastrarCliente(string nome, DateTime datanascimento, string telefone)//cadastra os clientes
 	{
-		int novoId = clientes.Count > 0 ? clientes[^1].Id + 1 : 1;
+		int novoId = clientes.Count > 0 ? clientes[^1].IdCliente + 1 : 1;
 		Cliente novoCliente = new Cliente
 		{
 
-			Id = novoId,
+			IdCliente = novoId,
 			Nome = nome,
 			DataNascimento = datanascimento,
 			Telefone = telefone
@@ -53,7 +53,7 @@ public class Cliente : Pessoa
 
 	public static void RemoverCliente(int idremovido) //funcao para remover um cliente
 	{
-		var clienteParaRemover = clientes.FirstOrDefault(cliente => cliente.Id == idremovido);//verifica se o id fornecido existe na lista
+		var clienteParaRemover = clientes.FirstOrDefault(cliente => cliente.IdCliente == idremovido);//verifica se o id fornecido existe na lista
 		clientes.Remove(clienteParaRemover);
 		Console.WriteLine("Cliente removido com sucesso ");
 
@@ -61,7 +61,7 @@ public class Cliente : Pessoa
 
 	public override string ToString() //formatação da saída de função ListarClientes
 	{
-		return $"ID: {Id}, Nome: {Nome}, Data de Nascimento: {DataNascimento.ToShortDateString()}, Telefone: {Telefone}";
+		return $"ID: {IdCliente}, Nome: {Nome}, Data de Nascimento: {DataNascimento.ToShortDateString()}, Telefone: {Telefone}";
 	}
 
 

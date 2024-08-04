@@ -4,14 +4,14 @@ namespace Biblioteca;
 
 public class Livro
 {
-	public int Id { get; set; }
+	public int IdLivro { get; set; }
 	public string Titulo { get; set; }
 	public string Autor { get; set; }
 	public bool Disponivel { get; set; }
 
 	public static List<Livro> livros = new List<Livro>{
 
-	new Livro {Id = 1, Titulo = "Pai pobre pai rico", Autor="Robert Kyiosaki", Disponivel=true}
+	new Livro {IdLivro = 1, Titulo = "Pai pobre pai rico", Autor="Robert Kyiosaki", Disponivel=true}
 
 	};
 
@@ -35,20 +35,22 @@ public class Livro
 		}
 	}
 
-	public static void AdicionarLivro(string titulo, string autor, bool disponivel){
-		int novoId = livros.Count > 0 ? livros[^1].Id + 1 : 1;
+	public static void AdicionarLivro(string titulo, string autor){
+		int novoId = livros.Count > 0 ? livros[^1].IdLivro + 1 : 1;
 		Livro novoLivro = new Livro
 		{
-			Id = novoId,
+			IdLivro = novoId,
 			Titulo=titulo,
 			Autor=autor,
-			
+			Disponivel=true
 		};
+	livros.Add(novoLivro);
+	Console.WriteLine("Livro adicionado com sucesso!" );
 
 	}
 	public override string ToString() //formatação da saída de função ListarLivros
 	{
-		return $"ID: {Id}, Título: {Titulo}, Autor: {Autor}, Disponivel : {Disponivel}";
+		return $"ID: {IdLivro}, Título: {Titulo}, Autor: {Autor}, Disponivel : {Disponivel}";
 	}
 
 }

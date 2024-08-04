@@ -7,65 +7,51 @@ public class Biblioteca
 {
 	public List<Cliente> clientes = new List<Cliente>();
 	public List<Livro> livros= new List<Livro>();
-	public List<Emprestimo> emprestimos= new List<Emprestimo>();
+	public static List<Emprestimo> emprestimos= new List<Emprestimo>();
 
 	public List<Funcionario> funcionarios= new List<Funcionario>();
 	
-	public void EmprestarLivro(int idCliente, int idLivro)
+	public static void EmprestarLivro(int idcliente, int idlivro, DateTime diaemprestimo, DateTime devolucaoprevista)
 	{
-		Livro livro = livros.Find(l => l.Id == idLivro && l.Disponivel == true);
-		
-		if (livro == null)
-		{
-			Console.WriteLine("Livro não encontrado ou indisponível.");
-			return;
-		}
-		
-		Cliente cliente = clientes.Find(c => c.Id == idCliente);
-		
-		if (cliente == null)
-		{
-			Console.WriteLine("Cliente não encontrado");
-			return;
-		}
-		
-		Emprestimo emprestimo = new Emprestimo
-		{
-			Id = emprestimos.Count + 1,
-			ClienteEmprestimo = cliente,
-			LivroEmprestado = livro,
-			DataDoEmprestimo = DateTime.Today,
-			DataDevolucaoPrevista = DateTime.Today.AddDays(15)
-		};
-		
-		livro.Disponivel = false;
-		emprestimos.Add(emprestimo);
-		
-		Console.WriteLine("Livro emprestado com sucesso!");
+		Emprestimo NovoEmprestimo = new Emprestimo(){
+
+			IdCliente= idcliente,
+			IdLivro = idlivro,
+			DataDoEmprestimo = diaemprestimo,
+			DataDevolucaoPrevista = devolucaoprevista
+			};
+			
+			emprestimos.Add(NovoEmprestimo);
+			
+			Console.WriteLine("Emprestimo Realizado com sucesso");
 	}
 	
-	public void DevolverLivro(int idCliente, int idLivro)
-	{
-		Livro livro = livros.Find(l => l.Id == idLivro);
-		
-		if (livro == null)
+	public static void VerificarEmprestimos(){
+
+		Console.WriteLine("Emprestimos ativos :");
+
+		if (emprestimos.Count == 0)
 		{
-			Console.WriteLine("Livro não encontrado"); 
-			return;
+			Console.WriteLine("Nenhum emprestimo ativo.");
 		}
-		
-		Emprestimo emprestimo = emprestimos.Find(e => e.ClienteEmprestimo.Id == idCliente
-		&& e.LivroEmprestado.Id == idLivro);
-		
-		if (emprestimo == null)
+
+		else
 		{
-			Console.WriteLine("Empréstimo não encontrado.");
-			return;
+			//listar os emprestimos
+			foreach (var emprestimo in emprestimos)
+			{
+				Console.WriteLine(emprestimo.ToString());
+			}
 		}
-		
-		emprestimo.LivroEmprestado.Disponivel = true;
-		emprestimo.DataDevolucao = DateTime.Today;
-		
+	}
+
+	
+	
+	public static void DevolverLivro(int idcliente, int idlivro)
+	{	
+			var devolver = emprestimos.FirstOrDefault(e => e.IdCliente == idcliente && e.IdLivro == idlivro);//verifica se o id fornecido existe na lista
+		emprestimos.Remove(devolver);
+
 		Console.WriteLine("Livro Devolvido com sucesso.");
 	}	
 }
