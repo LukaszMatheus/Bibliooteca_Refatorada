@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Common;
 using System.Runtime.InteropServices.Marshalling;
 
 namespace Biblioteca;
@@ -44,9 +45,13 @@ class Program
 
 			Console.WriteLine("Selecione uma opção: ");
 
-			Console.WriteLine("1 Para abrir aba Clientes.");
+			Console.WriteLine("1 Para abrir menu Clientes.");
 
 			Console.WriteLine("2 Para abrir menu de Funcionários.");
+
+			Console.WriteLine("3 Para abrir menu de livros.");
+
+
 			op = int.Parse(Console.ReadLine());
 
 			if (op == 0)
@@ -83,7 +88,8 @@ class Program
 					Cliente.CadastrarCliente(nome, dataNascimento, telefone);
 				}
 				else if (alternativa == 3)
-				{	Console.Clear();
+				{
+					Console.Clear();
 					Console.WriteLine("Digite o Id do cliente a ser excluido");
 					int idremovido = Int32.Parse(Console.ReadLine());
 					Cliente.RemoverCliente(idremovido);
@@ -92,9 +98,57 @@ class Program
 			else if (op == 2)
 			{
 				Console.Clear();
-				Console.WriteLine("2 - Listar Funcionarios: ");
-				Console.ReadKey();
+				Console.WriteLine("1 Para listar os funcionários: ");
+				Console.WriteLine("2 Para adicionar um funcionário :");
+				Console.WriteLine("3 Para remover um funcionário. ");
+				alternativa = Int32.Parse(Console.ReadLine());
+
+				if (alternativa == 1)
+				{
+					Console.Clear();
+					Funcionario.ListarFuncionarios();
+				}
+
+				else if (alternativa == 2)
+				{
+
+					Console.Clear();
+
+					Console.WriteLine("Digite o nome do funcionário");
+					string nome = Console.ReadLine();
+
+					Console.WriteLine("Digite o cargo do funcionário");
+					string cargo = Console.ReadLine();
+
+					Console.WriteLine("Digite a data de Admissão");
+					DateTime dataadmissao = DateTime.Parse(Console.ReadLine());
+
+					Funcionario.AdicionarFuncionario(nome, cargo, dataadmissao);
+
+				}
+
+				else if (alternativa == 3){
+
+					Console.Clear();
+					Console.WriteLine("Digite o id do funcionários a ser removido :");
+					var idpararemover = Int32.Parse(Console.ReadLine());
+					Funcionario.RemoverFuncionario(idpararemover);
+				}
 			}
+
+			else if(op == 3){
+
+				Console.Clear();
+				Console.WriteLine("1 para ver todos os livros ");
+				alternativa=Int32.Parse(Console.ReadLine());
+
+				if(alternativa == 1){
+
+					Console.Clear();
+					Livro.ListarLivros();
+				}
+			}
+
 		}
 
 

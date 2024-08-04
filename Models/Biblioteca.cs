@@ -8,6 +8,8 @@ public class Biblioteca
 	public List<Cliente> clientes = new List<Cliente>();
 	public List<Livro> livros= new List<Livro>();
 	public List<Emprestimo> emprestimos= new List<Emprestimo>();
+
+	public List<Funcionario> funcionarios= new List<Funcionario>();
 	
 	public void EmprestarLivro(int idCliente, int idLivro)
 	{
